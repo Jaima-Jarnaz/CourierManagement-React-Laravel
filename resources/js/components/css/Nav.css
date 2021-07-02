@@ -1,0 +1,8 @@
+#nav-id {
+    width: 23%;
+    height: 40rem;
+    position: fixed;
+}
+.nav-item {
+    list-style: none !important;
+}
