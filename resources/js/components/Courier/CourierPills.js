@@ -8,12 +8,12 @@ export default function CourierPills() {
     return (
         <React.Fragment>
             <div className="container mt-2">
-                <div className="row bg-light border border-success p-3">
+                <div className="row border border-light p-3">
                     <div className="col-md-8">
                         <ul className="nav nav-pills">
                             <li className="nav-item">
                                 <NavLink
-                                    className="nav-link btn btn-outline-success p-3 bg-success"
+                                    className="nav-link btn btn-warning p-3"
                                     to="/courier/courierlist"
                                 >
                                     Courier List
@@ -22,7 +22,7 @@ export default function CourierPills() {
 
                             <li className="nav-item">
                                 <NavLink
-                                    className="nav-link btn btn-outline-success p-3 bg-info"
+                                    className="nav-link btn btn-info p-3"
                                     to="/courier/addcourier"
                                 >
                                     Courier Add
@@ -31,8 +31,8 @@ export default function CourierPills() {
 
                             <li className="nav-item">
                                 <NavLink
-                                    className="nav-link btn btn-outline-warning p-3"
-                                    to="#"
+                                    className="nav-link btn btn-success p-3"
+                                    to="/Courier/Statuslist"
                                 >
                                     Manage Status
                                 </NavLink>

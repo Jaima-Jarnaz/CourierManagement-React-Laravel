@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import CourierPills from "./CourierPills";
@@ -69,12 +69,30 @@ export default function CourierAdd() {
             setCourierStatus("");
         }
     };
+
+    const fetechGeneratedId = async () => {
+        const generateId = await axios.get("/courier/generatedId");
+        setOrderId(generateId.data.orderid);
+        setTrackingNo(generateId.data.trackingno);
+    };
+    console.log(order_id);
+    console.log(tracking_no);
+
+    useEffect(() => {
+        fetechGeneratedId();
+    }, []);
+
     return (
         <React.Fragment>
             <CourierPills />
             {message && (
-                <div className="alert alert-dismissible alert-success mt-5">
-                    <strong>Well done!</strong> Data saved successfully
+                <div className="container-fluid">
+                    <div className="row justify-content-center">
+                        <div className="col-md-6 alert alert-dismissible alert-success mt-5 text-center">
+                            <strong className="">Well done!</strong>
+                            Data saved successfully
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -261,6 +279,9 @@ export default function CourierAdd() {
                                             }}
                                             value={destination}
                                         >
+                                            <option value="">
+                                                Select Destination
+                                            </option>
                                             <option value="Dhaka">Dhaka</option>
                                             <option value="Khulna">
                                                 Khulna
@@ -464,10 +485,8 @@ export default function CourierAdd() {
                                             type="text"
                                             className="form-control"
                                             name="order_id"
-                                            onChange={e => {
-                                                setOrderId(e.target.value);
-                                            }}
                                             value={order_id}
+                                            readOnly
                                         />
                                     </div>
                                 </div>
@@ -483,9 +502,7 @@ export default function CourierAdd() {
                                             type="text"
                                             className="form-control"
                                             name="tracking_no"
-                                            onChange={e => {
-                                                setTrackingNo(e.target.value);
-                                            }}
+                                            readOnly
                                             value={tracking_no}
                                         />
                                     </div>
@@ -513,12 +530,19 @@ export default function CourierAdd() {
                                             value={courier_status}
                                         >
                                             <option>
+                                                Select Courier Status
+                                            </option>
+                                            <option value="Courier is on the way">
                                                 Courier is on the way
                                             </option>
-                                            <option>Courier picked up</option>
-                                            <option>Courier delivered</option>
-                                            <option>
+                                            <option value="Courier is on delivery">
                                                 Courier is on delivery
+                                            </option>
+                                            <option value="Courier picked up">
+                                                Courier picked up
+                                            </option>
+                                            <option value="Courier delivered">
+                                                Courier delivered
                                             </option>
                                         </select>
                                     </div>

@@ -3,15 +3,20 @@ import ReactDOM from "react-dom";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import CourierAdd from "./Courier/CourierAdd";
 import CourierContainer from "./Courier/CourierContainer";
-import Nav from "./Nav";
 import Home from "./Home";
 import CourierList from "./Courier/CourierList";
+import CourierUpdate from "./Courier/CourierUpdate";
+import DeleteCourier from "./Courier/DeleteCourier";
+import StatusManageList from "./Courier/StatusManageList";
+import StatusOfCourierUpdate from "./Courier/StatusOfCourierUpdate";
+import Index from "./website/Index";
 
 function Example() {
     return (
         <Router>
             <>
                 <Switch>
+                    <Route path="/CourierService" exact component={Index} />
                     <Route path="/" exact component={Home} />
                     <Route path="/courier" exact component={CourierContainer} />
                     <Route
@@ -24,34 +29,26 @@ function Example() {
                         exact
                         component={CourierList}
                     />
-                    {/* <Route path="/about" exact component={About} />
-                    <Route path="/student" exact component={StudentDisplay} />
-                    <Route path="/studentlist" exact component={StudentList} />
                     <Route
-                        path="/studentupdate/:id"
+                        path="/courier/edit/:id"
                         exact
-                        component={StudentUpdate}
+                        component={CourierUpdate}
                     />
                     <Route
-                        path="/studentdelete/:id"
+                        path="/courier/delete/:id"
                         exact
-                        component={StudentDelete}
-                    />
-                    <Route path="/addcourse" exact component={CourseDisplay} />
-                    <Route path="/teachers" exact component={TeachersDisplay} />
-                    <Route path="/addteachers" exact component={TeachersAdd} />
-                    <Route path="/teacherslist" exact component={TeacherList} />
-                    <Route
-                        path="/teachersupdate/:id"
-                        exact
-                        component={TeacherUpdate}
+                        component={DeleteCourier}
                     />
                     <Route
-                        path="/teachersdelete/:id"
+                        path="/courierstatus/update/:id"
                         exact
-                        component={TeacherDelete}
-                    />{" "}
-                    */}
+                        component={StatusOfCourierUpdate}
+                    />
+                    <Route
+                        path="/Courier/Statuslist"
+                        exact
+                        component={StatusManageList}
+                    />
                 </Switch>
             </>
         </Router>

@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post("/genarateid","CourierController@genarateId");
+//Route::get("/genarateid","CourierController@genarateId");
+//Route::get("/courier/edit/{id}","CourierController@getEditableData");

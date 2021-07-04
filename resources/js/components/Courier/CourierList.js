@@ -1,4 +1,6 @@
 import CourierPills from "./CourierPills";
+import swal from "sweetalert";
+import Pagination from "./Pagination";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,14 +19,20 @@ export default function CourierList() {
     useEffect(() => {
         courierFetchedData();
     }, []);
-    console.log("data1213", fetchedCourierDetails);
+
+    const sureDelete = () => {
+        swal("Are you sure!", "Do you want to delete?");
+    };
     return (
         <div className="container-fluid">
             <CourierPills />
             <h4 className="text-center text-light mt-5">Courier Details</h4>
             <div className="row m-2 justify-content-center">
                 <div className="col mt-3">
-                    <table className="table table-primary table-striped text-dark">
+                    <table
+                        className="table table-striped text-dark"
+                        style={{ backgroundColor: "white" }}
+                    >
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -91,7 +99,7 @@ export default function CourierList() {
 
                                         <td>
                                             <NavLink
-                                                to={`/courierupdate/${data.id}`}
+                                                to={`/courier/edit/${data.id}`}
                                             >
                                                 <FontAwesomeIcon
                                                     icon={faEdit}
@@ -99,7 +107,8 @@ export default function CourierList() {
                                                 />
                                             </NavLink>
                                             <NavLink
-                                                to={`/courierdelete/${data.id}`}
+                                                onClick={sureDelete}
+                                                to={`/courier/delete/${data.id}`}
                                             >
                                                 <FontAwesomeIcon
                                                     icon={faTrashAlt}
@@ -114,6 +123,7 @@ export default function CourierList() {
                     </table>
                 </div>
             </div>
+            <Pagination />
         </div>
     );
 }
