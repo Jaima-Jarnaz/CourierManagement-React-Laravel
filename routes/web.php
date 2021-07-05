@@ -29,3 +29,11 @@ Route::get("/courier/delete/{id}","CourierController@delete");
 Route::get("/courier/getPreviousStatusList","CourierController@getPreviousStatusList");
 Route::get("/courier/getStatusDataByOrderId/{id}","CourierController@getStatusDataByOrderId");
 Route::post("/courierstatus/update/{id}","CourierController@updateCourierStatus");
+
+
+//`````tracking courier data``````````
+Route::get("/courier/tracking/{key}","CourierController@trackingCourierData");
+
+
+//````````filter by order id```````
+Route::get("/courier/filterOrderId/{OrderId}","CourierController@getFilterDataByOrderId");

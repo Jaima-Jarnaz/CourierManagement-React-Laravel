@@ -143,11 +143,23 @@ class CourierController extends Controller
         $courier->Courier_Status_date=request('Courier_Status_date');
         $courier->Courier_Status=request('Courier_Status');
         $courier->save();
-        return  response()->json(['status'=>200]);
+        return  response()->json(['status'=>200,'afterupdateData'=>$courier]);
+    }
+
+    public function trackingCourierData($key)
+    {
+        
+        $trackingData=Courier::where('tracking_no','LIKE',"%$key%")->get();
+        return response()->json(['status'=>200,'trackingData'=>$trackingData]);
+        
     }
 
 
-
+    public function getFilterDataByOrderId($Order_Id)
+    {
+        $filterData=Courier::where('Order_Id',$Order_Id)->get();
+        return response()->json(['status'=>200,'filterOrderIdData'=>$filterData]);
+    }
 
 
 

@@ -25,14 +25,7 @@ export default function Nav() {
                                     Couriers
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-link active"
-                                    to="/teachers"
-                                >
-                                    Branches
-                                </NavLink>
-                            </li>
+
                             <li className="nav-item">
                                 <NavLink
                                     className="nav-link active"
@@ -41,6 +34,16 @@ export default function Nav() {
                                     Status
                                 </NavLink>
                             </li>
+
+                            <li className="nav-item">
+                                <NavLink
+                                    className="nav-link active"
+                                    to="/courier/track"
+                                >
+                                    Tracking
+                                </NavLink>
+                            </li>
+
                             <li className="nav-item">
                                 <NavLink
                                     className="nav-link active"

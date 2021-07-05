@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
-import CourierPills from "./CourierPills";
-
 export default function StatusList(props) {
-    const sureDelete = () => {
-        swal("Are you sure!", "Do you want to delete?");
-    };
-
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <CourierPills />
-                <h4 className="text-center text-light mt-5">Courier Details</h4>
                 <div className="row m-2 justify-content-center">
                     <div className="col mt-2">
                         <table

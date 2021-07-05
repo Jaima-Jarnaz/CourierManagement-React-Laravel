@@ -1,0 +1,7 @@
+#home-section {
+    /* clip-path: polygon(0 0, 100% 0, 100% 60%, 0% 100%); */
+    /* clip-path: polygon(75% 100%, 100% 100%, 100% 50%, 75% 100%, 0 100%, 0 62%); */
+    clip-path: polygon(120% 69%, 100% 67%, 100% 10%, 53% 61%, 0 37%, 0 5%);
+    background: linear-gradient(to bottom, #7d6797 0%, #d6bbdf 100%);
+    height: 450px;
+}

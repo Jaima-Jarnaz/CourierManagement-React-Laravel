@@ -1,30 +1,29 @@
 import React from "react";
 import CardService from "./CardService";
+import "../css/service.css";
 
 export default function Service() {
     return (
         <React.Fragment>
-            <div
-                className="container-fluid"
-                style={{ "background-color": "white" }}
-            >
-                <div className="row">
+            <div className="container-fluid bg-light p-5">
+                <h2 className="text-center">Our Services</h2>
+                <div className="row pb-4 tilt-in-top-1">
                     <div className="col-md-4">
                         <CardService
                             header={"Cash On Delivery"}
-                            text={"Fastest Service"}
+                            text={"Fastest courier Service"}
                         />
                     </div>
                     <div className="col-md-4">
                         <CardService
-                            header={"Cash On Delivery"}
-                            text={"Fastest Service"}
+                            header={"Packaging"}
+                            text={"Send proper package"}
                         />
                     </div>
                     <div className="col-md-4">
                         <CardService
-                            header={"Cash On Delivery"}
-                            text={"Fastest Service"}
+                            header={"Catagories"}
+                            text={"Provide different catagory"}
                         />
                     </div>
                 </div>

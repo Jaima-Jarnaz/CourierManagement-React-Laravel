@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../css/NavWebsite.css";
+import logo from "../../../images/logo.png";
 
 export default function NavWebsite() {
     return (
@@ -7,7 +9,11 @@ export default function NavWebsite() {
             <nav className="navbar navbar-expand-lg navbar-dark bg-success p-4">
                 <div className="container-fluid">
                     <NavLink className="navbar-brand" to="/">
-                        fastCourier
+                        <img
+                            className="img-fluid"
+                            src={logo}
+                            style={{ width: "13rem" }}
+                        ></img>
                     </NavLink>
                     <button
                         className="navbar-toggler"
@@ -27,24 +33,11 @@ export default function NavWebsite() {
                     >
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/">
+                                <NavLink
+                                    className="nav-link"
+                                    to="/CourierService"
+                                >
                                     Home
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-link active"
-                                    to="/student"
-                                >
-                                    Services
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-link active"
-                                    to="/teachers"
-                                >
-                                    About
                                 </NavLink>
                             </li>
 
@@ -53,23 +46,34 @@ export default function NavWebsite() {
                                     className="nav-link active"
                                     to="/about"
                                 >
+                                    About
+                                </NavLink>
+                            </li>
+
+                            <li className="nav-item">
+                                <NavLink
+                                    className="nav-link active"
+                                    to="/service"
+                                >
+                                    Services
+                                </NavLink>
+                            </li>
+
+                            <li className="nav-item">
+                                <NavLink
+                                    className="nav-link active"
+                                    to="/tracking"
+                                >
+                                    Tracking
+                                </NavLink>
+                            </li>
+
+                            <li className="nav-item">
+                                <NavLink
+                                    className="nav-link active"
+                                    to="/footer"
+                                >
                                     Contact
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-link active"
-                                    to="/register"
-                                >
-                                    Register
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-link active"
-                                    to="/login"
-                                >
-                                    login
                                 </NavLink>
                             </li>
                         </ul>
