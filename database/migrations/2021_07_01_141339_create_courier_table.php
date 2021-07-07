@@ -18,13 +18,13 @@ class CreateCourierTable extends Migration
             $table->string('Sender_Name');
             $table->string('Sender_Address');
             $table->string('Sender_Phone');
-            $table->string('Sender_Email')->unique();
+            $table->string('Sender_Email');
             $table->string('Sender_Origin');
             $table->string('Receiver_Name');
             $table->string('Receiver_Address');
             $table->string('Receiver_Destination');
             $table->string('Receiver_Phone');
-            $table->string('Receiver_Email')->unique();
+            $table->string('Receiver_Email');
             $table->date('Date');
             $table->date('Courier_Status_date');
             $table->string('Catagory');

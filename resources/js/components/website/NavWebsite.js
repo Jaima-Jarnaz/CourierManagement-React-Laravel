@@ -8,7 +8,7 @@ export default function NavWebsite() {
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-success p-4">
                 <div className="container-fluid">
-                    <NavLink className="navbar-brand" to="/">
+                    <NavLink className="navbar-brand" to="/CourierService">
                         <img
                             className="img-fluid"
                             src={logo}

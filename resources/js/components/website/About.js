@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/about.css";
 import img2_about from "../../../images/img2_about.jpeg";
 
 export default function About() {
@@ -11,10 +12,10 @@ export default function About() {
                 <h2 className="text-center text-primary">ABOUT</h2>
             </div>
             <div className="row">
-                <div className="col-md-6 p-5">
+                <div className="col-md-6 p-5 tilt-in-top-1">
                     <img src={img2_about} className="img-fluid"></img>
                 </div>
-                <div className="col-md-6 mt-5">
+                <div className="col-md-6 mt-5 tilt-in-top-1">
                     <div className="row justify-content-center">
                         <div className="col-md-10">
                             <p className="lead text-dark">

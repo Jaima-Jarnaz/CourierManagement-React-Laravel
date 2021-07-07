@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
+//import RegistrationTab from "./Registration/RegistrationTab";
+import Register from "./Registration/Register";
+import Login from "./Registration/Login";
 import Home from "./Home";
 import Index from "./website/Index";
 import Service from "./website/Service";
@@ -15,17 +18,22 @@ import DeleteCourier from "./Courier/DeleteCourier";
 import StatusManageList from "./Courier/StatusManageList";
 import StatusOfCourierUpdate from "./Courier/StatusOfCourierUpdate";
 import CourierTrack from "./Courier/CourierTrack";
+import ReportGenarate from "./Report/ReportGenarate";
 
 function Example() {
     return (
         <Router>
             <>
                 <Switch>
+                    <Route path="/register" exact component={Register} />
+                    <Route path="/login" exact component={Login} />
+
                     <Route path="/CourierService" exact component={Index} />
                     <Route path="/tracking" exact component={TrackCourier} />
                     <Route path="/service" exact component={Service} />
                     <Route path="/about" exact component={About} />
                     <Route path="/footer" exact component={Footer} />
+
                     <Route path="/" exact component={Home} />
                     <Route path="/courier" exact component={CourierContainer} />
                     <Route
@@ -63,6 +71,7 @@ function Example() {
                         exact
                         component={CourierTrack}
                     />
+                    <Route path="/report" exact component={ReportGenarate} />
                 </Switch>
             </>
         </Router>

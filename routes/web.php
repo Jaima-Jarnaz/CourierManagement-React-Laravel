@@ -37,3 +37,14 @@ Route::get("/courier/tracking/{key}","CourierController@trackingCourierData");
 
 //````````filter by order id```````
 Route::get("/courier/filterOrderId/{OrderId}","CourierController@getFilterDataByOrderId");
+
+
+//``````````get payment data``````````
+Route::get("/courier/payment/{OrderId}","CourierController@getPaymentDataOfOrderId");
+Route::post("/courier/paymentdata","CourierController@postPaymentData");
+
+
+
+//````````Registration``````````````
+Route::post('/register','RegistrationController@register');
+Route::post('/login','RegistrationController@login');

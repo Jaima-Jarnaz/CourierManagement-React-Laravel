@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <div className="container-fluid bg-success">
+        <div className="container-fluid bg-success p-3">
             <div className="page-footer font-small blue pt-4">
                 <div className="container-fluid text-center text-md-left">
                     <div className="row">

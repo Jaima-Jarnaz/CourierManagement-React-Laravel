@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Courier;
+use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -159,6 +160,60 @@ class CourierController extends Controller
     {
         $filterData=Courier::where('Order_Id',$Order_Id)->get();
         return response()->json(['status'=>200,'filterOrderIdData'=>$filterData]);
+    }
+
+
+    public function getPaymentDataOfOrderId($Order_Id)
+    {
+        $getData=Courier::where('Order_Id',$Order_Id)->first();
+        $orderid=$getData->Order_Id;
+        $date=$getData->Date;
+        $catagory=$getData->Catagory;
+        $trackingno=$getData->tracking_no;
+        $weight=$getData->Weight;
+        $origin=$getData->Sender_Origin;
+        $destination=$getData->Receiver_Destination;
+        if($origin ==='Dhaka' and $destination ==='Dhaka'){
+            $total=($weight*20)+100;
+            $delivery_charge=$total-($weight*20);
+
+        }else{
+            $total=($weight*20)+200;
+            $delivery_charge=$total-($weight*20);
+    
+        }
+
+        $payment_data = array([
+                            "orderid"=>$orderid,
+                            "date"=>$date, 
+                            "catagory"=>$catagory, 
+                            "trackingno"=>$trackingno,
+                            "weight"=>$weight,
+                            "origin"=>$origin,
+                            "destination"=>$destination,
+                            "total"=>$total,
+                            "delivery_charge"=>$delivery_charge]
+
+                            );
+        return response()->json(['status'=>200,'payment_data'=>$payment_data]);
+        
+    }
+
+    public function postPaymentData()
+    {
+        $payment = new Payment();
+        $payment->Order_Id=request('orderid');
+        $payment->Sender_Origin=request('origin');
+        $payment->Receiver_Destination=request('destination');
+        $payment->Date=request('date');
+        $payment->Catagory=request('catagory');
+        $payment->Weight=request('weight');
+        $payment->tracking_no=request('trackingno');
+        $payment->Total_Bill=request('total');
+        $payment->Delivery_Charge=request('delivery_charge');
+        $payment->save();
+        return  response()->json(['status'=>200]);
+       
     }
 
 

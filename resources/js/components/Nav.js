@@ -1,8 +1,9 @@
 import "./css/Nav.css";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Redirect } from "react-router";
 
-export default function Nav() {
+export default function Nav(props) {
     return (
         <div>
             <nav
@@ -47,18 +48,18 @@ export default function Nav() {
                             <li className="nav-item">
                                 <NavLink
                                     className="nav-link active"
-                                    to="/register"
+                                    to="/report"
                                 >
                                     Reports
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink
+                                <button
                                     className="nav-link active"
-                                    to="/login"
+                                    onClick={props.clickOnLogOut}
                                 >
                                     Logout
-                                </NavLink>
+                                </button>
                             </li>
                         </ul>
                     </div>
