@@ -3,9 +3,11 @@ import StatusList from "./StatusList";
 import axios from "axios";
 import CourierPills from "./CourierPills";
 import FilterByOrderId from "./FilterByOrderId";
+import { Redirect } from "react-router";
 
 export default function StatusManageList() {
     const [fetchedPreviousStatus, setFetchedPreviousStatus] = useState([]);
+    const [error, setError] = useState(false);
 
     const getPreviousData = async () => {
         const res = await axios.get("/courier/getPreviousStatusList");
@@ -21,7 +23,12 @@ export default function StatusManageList() {
         if (res.status === 200) {
             setFetchedPreviousStatus(res.data.filterOrderIdData);
             console.log("filterOrderIdData", res.data.filterOrderIdData);
+        } else {
+            setError(true);
         }
+        // if (res.status === "failed") {
+        //     setError(true);
+        // }
     };
 
     useEffect(() => {
@@ -33,7 +40,13 @@ export default function StatusManageList() {
             <CourierPills />
             <h4 className="text-center text-light mt-5">Courier Details</h4>
             <FilterByOrderId enteredOrderId={getFilterDataByOrderId} />
-            <StatusList fetchedPreviousStatus={fetchedPreviousStatus} />
+            {/* {error && <Redirect to="/" />}
+            {!error && ( */}
+            <StatusList
+                fetchedPreviousStatus={fetchedPreviousStatus}
+                error={error}
+            />
+            {/* )} */}
         </React.Fragment>
     );
 }

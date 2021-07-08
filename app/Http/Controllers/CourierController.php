@@ -159,7 +159,13 @@ class CourierController extends Controller
     public function getFilterDataByOrderId($Order_Id)
     {
         $filterData=Courier::where('Order_Id',$Order_Id)->get();
-        return response()->json(['status'=>200,'filterOrderIdData'=>$filterData]);
+         if(count($filterData)==0){
+            return response()->json(['status'=>'failed','filterOrderIdData'=>$filterData]);
+
+        }else{
+             return response()->json(['status'=>200,'filterOrderIdData'=>$filterData]);
+
+        }
     }
 
 
@@ -221,7 +227,10 @@ class CourierController extends Controller
     public  function totalcount()
     {
         $couriers = DB::table('couriers')->count();
-        return response()->json(['totalcouriers'=>$couriers]);
+        $admins = DB::table('admins')->count();
+        $totalDelivered = DB::table('couriers')->where('Courier_Status','Courier delivered')->count();
+        $pending=$couriers - $totalDelivered;
+        return response()->json(['totalcouriers'=>$couriers,'totalAdmins'=>$admins,'pendingCourier'=>$pending,'totalDelivered'=>$totalDelivered]);
         
     }
 

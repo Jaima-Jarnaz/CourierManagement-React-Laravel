@@ -43,8 +43,10 @@ Route::get("/courier/filterOrderId/{OrderId}","CourierController@getFilterDataBy
 Route::get("/courier/payment/{OrderId}","CourierController@getPaymentDataOfOrderId");
 Route::post("/courier/paymentdata","CourierController@postPaymentData");
 
-
-
 //````````Registration``````````````
 Route::post('/register','RegistrationController@register');
 Route::post('/login','RegistrationController@login');
+
+//````````Report``````
+Route::post('/reports','ReportController@generateReport');
+Route::get('/totalEarnings','ReportController@total_earnings');

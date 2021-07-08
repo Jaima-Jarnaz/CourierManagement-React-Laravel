@@ -7,8 +7,11 @@ import Nav from "./Nav";
 
 export default function Home() {
     const [courierCount, setCourierCount] = useState(0);
-
+    const [adminCount, setAdminCount] = useState(0);
+    const [pending, setPending] = useState(0);
+    const [delivered, setDelivered] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+
     const clickOnLogOut = () => {
         localStorage.removeItem("admin");
         setIsLoggedIn(false);
@@ -17,6 +20,9 @@ export default function Home() {
     const totalCount = async () => {
         const result = await axios.get("courier/totalcourier");
         setCourierCount(result.data.totalcouriers);
+        setAdminCount(result.data.totalAdmins);
+        setPending(result.data.pendingCourier);
+        setDelivered(result.data.totalDelivered);
         console.log(result.data.totalcouriers);
     };
 
@@ -41,18 +47,51 @@ export default function Home() {
                             className="col-md-9 mt-5 bg-light p-5"
                             id="home-side-div"
                         >
-                            <CardCount
-                                title={"Total Courier"}
-                                amount={courierCount}
-                            />
-                            <CardCount
-                                title={"Total Branch"}
-                                amount={courierCount}
-                            />
-                            <CardCount
-                                title={"Total Admin"}
-                                amount={courierCount}
-                            />
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <CardCount
+                                        title={"Total Courier"}
+                                        amount={courierCount}
+                                    />
+                                </div>
+
+                                <div className="col-md-4">
+                                    <CardCount
+                                        title={"Total Pending"}
+                                        amount={pending}
+                                    />
+                                </div>
+
+                                <div className="col-md-4">
+                                    <CardCount
+                                        title={"Total Admin"}
+                                        amount={adminCount}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <CardCount
+                                        title={"Total Delivered"}
+                                        amount={delivered}
+                                    />
+                                </div>
+
+                                <div className="col-md-4">
+                                    <CardCount
+                                        title={"Total Branch"}
+                                        amount={0}
+                                    />
+                                </div>
+
+                                <div className="col-md-4">
+                                    <CardCount
+                                        title={"Catagory"}
+                                        amount={adminCount}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

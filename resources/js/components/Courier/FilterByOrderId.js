@@ -23,6 +23,7 @@ export default function FilterByOrderId(props) {
                             type="text"
                             name="tracking_no"
                             placeholder=" Order Id"
+                            required
                             onChange={e => {
                                 setFilterOrderId(e.target.value);
                             }}

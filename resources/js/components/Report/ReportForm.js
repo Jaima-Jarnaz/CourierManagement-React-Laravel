@@ -1,22 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import NavContainer from "../NavContainer";
 import Container from "../Courier/Container";
 import TotalEarn from "./TotalEarn";
 
-export default function ReportForm() {
+export default function ReportForm(props) {
+    const [month, setMonth] = useState("");
+    const [year, setYear] = useState("");
+
+    const formSubmitHandler = e => {
+        e.preventDefault();
+        const formData = {
+            Month: month,
+            Year: year
+        };
+        console.log(formData);
+
+        props.reportFormData(formData); //statelifting
+    };
+
     return (
         <React.Fragment>
             <NavContainer>
                 <Container>
-                    <form className="">
+                    <form className="" onSubmit={formSubmitHandler}>
                         <div className="row">
                             <div className="form-group col-md-6">
                                 <label htmlFor="Month">Month</label>
                                 <select
                                     className="form-control custom-select"
                                     name="month"
-                                    id=""
+                                    onChange={e => {
+                                        setMonth(e.target.value);
+                                    }}
                                 >
+                                    <option value="">Select Month</option>
                                     <option value="01">January</option>
                                     <option value="02">February</option>
                                     <option value="03">March</option>
@@ -37,8 +54,11 @@ export default function ReportForm() {
                                 <select
                                     className="form-control custom-select"
                                     name="year"
-                                    id=""
+                                    onChange={e => {
+                                        setYear(e.target.value);
+                                    }}
                                 >
+                                    <option value="">Select Year</option>
                                     <option value="2021">2021</option>
                                     <option value="2021">2022</option>
                                     <option value="2021">2023</option>
@@ -57,12 +77,15 @@ export default function ReportForm() {
                                 className="menu-toggle btn btn-info btn-sm"
                                 type="submit"
                             >
-                                Filter
+                                Generate
                             </button>
                         </div>
                     </form>
                 </Container>
-                <TotalEarn />
+                <TotalEarn
+                    totalEarnings={props.totalEarnings}
+                    monthlyTotal={props.monthlyTotal}
+                />
             </NavContainer>
         </React.Fragment>
     );
