@@ -14,6 +14,59 @@
 <h2 align="center">Laravel + React </h2>
 <h3 align="center">Courier Management System</h3>
 
+>Actors 
+<ul>
+    <li> Admin</li>
+    <li> Branch Admin</li>
+    <li> Customer</li>
+  </ul>
+  
+  ## Some Clear Portion
+  >Delete data using sweetAlert.<p>Always use button onClick it'll help to re-render the component instance of using NavLink</p>
+  ```
+      const deleteCourierData = id => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        }).then(willDelete => {
+            if (willDelete) {
+                axios
+                    .get(`/courier/delete/${id}`)
+                    .then(function(response) {
+                        if (response.data.status === 200) {
+                            swal(response.data.message, {
+                                icon: "success"
+                            });
+                            setMessage(true);
+                        }
+                    })
+                    .catch(function(error) {
+                        swal("Data no deleted!");
+                        console.log(error);
+                    });
+            }
+        });
+
+        // const res = await axios.get(`/courier/delete/${id}`);
+        // if (res.data.status === 200) {
+        //     // swal({
+        //     //     title: "Good job!",
+        //     //     text: res.data.message,
+        //     //     icon: "success",
+        //     //     button: "OK"
+        //     // });
+
+        //     setMessage(true);
+        // }
+    };
+  
+  ```
+  >[Check the documentation of SweetAlert](https://sweetalert.js.org/guides/#getting-started)
+  
+
 
 
 
