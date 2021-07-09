@@ -19,12 +19,18 @@ export default function TotalEarn(props) {
                 className="jumbotron m-5 box2"
                 style={{ backgroundColor: "white" }}
             >
-                <h1 className="text-dark">Total Earnings in Month </h1>
+                <h1 className="text-dark">
+                    Total Earnings in Month {props.month}
+                </h1>
                 <hr className="my-2" />
+                {props.monthlyTotal == null && (
+                    <h4>
+                        <strong>Sorry no earnings</strong>
+                    </h4>
+                )}
                 <h2>
-                    <strong className="">{props.monthlyTotal}</strong>
+                    <strong>{props.monthlyTotal}</strong>
                 </h2>
-                <p className="lead"></p>
             </div>
         </div>
     );

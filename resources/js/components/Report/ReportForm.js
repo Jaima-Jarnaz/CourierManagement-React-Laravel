@@ -29,6 +29,7 @@ export default function ReportForm(props) {
                                 <select
                                     className="form-control custom-select"
                                     name="month"
+                                    required
                                     onChange={e => {
                                         setMonth(e.target.value);
                                     }}
@@ -54,6 +55,7 @@ export default function ReportForm(props) {
                                 <select
                                     className="form-control custom-select"
                                     name="year"
+                                    required
                                     onChange={e => {
                                         setYear(e.target.value);
                                     }}
@@ -85,6 +87,7 @@ export default function ReportForm(props) {
                 <TotalEarn
                     totalEarnings={props.totalEarnings}
                     monthlyTotal={props.monthlyTotal}
+                    month={month}
                 />
             </NavContainer>
         </React.Fragment>

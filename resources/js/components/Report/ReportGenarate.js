@@ -8,6 +8,7 @@ export default function ReportGenarate() {
 
     const getReportData = async getFormData => {
         const res = await axios.post("/reports", getFormData);
+
         if (res.data.status === 200) {
             setMonthlyTotal(res.data.monthlyTotal[0].total);
         }

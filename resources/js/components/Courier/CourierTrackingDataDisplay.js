@@ -3,6 +3,9 @@ import React from "react";
 export default function CourierTrackingDataDisplay(props) {
     return (
         <React.Fragment>
+            {props.trackingData.length === 0 && (
+                <h5 className="text-dark text-center">Sorry no data found</h5>
+            )}
             {props.trackingData.map(data => {
                 return (
                     <div key={data.id}>

@@ -82445,11 +82445,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function CourierList() {
+function CourierList(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       fetchedCourierDetails = _useState2[0],
       setFetchedCourierDetails = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      message = _useState4[0],
+      setMessage = _useState4[1];
 
   var courierFetchedData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -82483,17 +82488,47 @@ function CourierList() {
     };
   }();
 
+  var deleteCourierData = function deleteCourierData(id) {
+    sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+    }).then(function (willDelete) {
+      if (willDelete) {
+        axios__WEBPACK_IMPORTED_MODULE_8___default.a.get("/courier/delete/".concat(id)).then(function (response) {
+          if (response.data.status === 200) {
+            sweetalert__WEBPACK_IMPORTED_MODULE_2___default()(response.data.message, {
+              icon: "success"
+            });
+            setMessage(true);
+          }
+        })["catch"](function (error) {
+          sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Data no deleted!");
+          console.log(error);
+        });
+      }
+    }); // const res = await axios.get(`/courier/delete/${id}`);
+    // if (res.data.status === 200) {
+    //     // swal({
+    //     //     title: "Good job!",
+    //     //     text: res.data.message,
+    //     //     icon: "success",
+    //     //     button: "OK"
+    //     // });
+    //     setMessage(true);
+    // }
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
     courierFetchedData();
   }, []);
-
-  var sureDelete = function sureDelete() {
-    sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Are you sure!", "Do you want to delete?");
-  };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "container-fluid"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_CourierPills__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h4", {
+  }, message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
+    className: "container-fluid"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(CourierList, null)), !message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_CourierPills__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h4", {
     className: "text-center text-light mt-5"
   }, "Courier Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "row m-2 justify-content-center"
@@ -82536,14 +82571,16 @@ function CourierList() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__["FontAwesomeIcon"], {
       icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__["faEdit"],
       className: "text-info m-2"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["NavLink"], {
-      onClick: sureDelete,
-      to: "/courier/delete/".concat(data.id)
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("button", {
+      onClick: function onClick() {
+        deleteCourierData(data.id);
+      } // to={`/courier/delete/${data.id}`}
+
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__["FontAwesomeIcon"], {
       icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__["faTrashAlt"],
       className: "text-danger m-2"
     }))));
-  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 }
 
 /***/ }),
@@ -82710,6 +82747,7 @@ function CourierTrack() {
     type: "text",
     name: "tracking_no",
     placeholder: "Tracking No",
+    required: true,
     onChange: function onChange(e) {
       setTrackingNo(e.target.value);
     }
@@ -82735,7 +82773,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function CourierTrackingDataDisplay(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.trackingData.map(function (data) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.trackingData.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "text-dark text-center"
+  }, "Sorry no data found"), props.trackingData.map(function (data) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: data.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83407,95 +83447,6 @@ function CourierUpdate() {
     className: "btn btn-light mt-3"
   }, "Submit"))))));
 }
-
-/***/ }),
-
-/***/ "./resources/js/components/Courier/DeleteCourier.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/Courier/DeleteCourier.js ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
-/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _CourierList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CourierList */ "./resources/js/components/Courier/CourierList.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-function DeleteCourier() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      message = _useState2[0],
-      setMessage = _useState2[1];
-
-  var _useParams = Object(react_router__WEBPACK_IMPORTED_MODULE_3__["useParams"])(),
-      id = _useParams.id;
-
-  var deleteCourierData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return axios.get("/courier/delete/".concat(id));
-
-            case 2:
-              res = _context.sent;
-
-              if (res.data.status === 200) {
-                setMessage(true);
-              }
-
-            case 4:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function deleteCourierData() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    deleteCourierData();
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CourierList__WEBPACK_IMPORTED_MODULE_4__["default"], null));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (DeleteCourier);
 
 /***/ }),
 
@@ -84300,12 +84251,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _website_Service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./website/Service */ "./resources/js/components/website/Service.js");
 /* harmony import */ var _website_About__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./website/About */ "./resources/js/components/website/About.js");
 /* harmony import */ var _website_Footer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./website/Footer */ "./resources/js/components/website/Footer.js");
-/* harmony import */ var _website_TrackCourier__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./website/TrackCourier */ "./resources/js/components/website/TrackCourier.js");
-/* harmony import */ var _Courier_CourierAdd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Courier/CourierAdd */ "./resources/js/components/Courier/CourierAdd.js");
-/* harmony import */ var _Courier_CourierContainer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Courier/CourierContainer */ "./resources/js/components/Courier/CourierContainer.js");
-/* harmony import */ var _Courier_CourierList__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Courier/CourierList */ "./resources/js/components/Courier/CourierList.js");
-/* harmony import */ var _Courier_CourierUpdate__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Courier/CourierUpdate */ "./resources/js/components/Courier/CourierUpdate.js");
-/* harmony import */ var _Courier_DeleteCourier__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Courier/DeleteCourier */ "./resources/js/components/Courier/DeleteCourier.js");
+/* harmony import */ var _website_TrackingDataDisplay__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./website/TrackingDataDisplay */ "./resources/js/components/website/TrackingDataDisplay.js");
+/* harmony import */ var _website_TrackCourier__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./website/TrackCourier */ "./resources/js/components/website/TrackCourier.js");
+/* harmony import */ var _Courier_CourierAdd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Courier/CourierAdd */ "./resources/js/components/Courier/CourierAdd.js");
+/* harmony import */ var _Courier_CourierContainer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Courier/CourierContainer */ "./resources/js/components/Courier/CourierContainer.js");
+/* harmony import */ var _Courier_CourierList__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Courier/CourierList */ "./resources/js/components/Courier/CourierList.js");
+/* harmony import */ var _Courier_CourierUpdate__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Courier/CourierUpdate */ "./resources/js/components/Courier/CourierUpdate.js");
 /* harmony import */ var _Courier_StatusManageList__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Courier/StatusManageList */ "./resources/js/components/Courier/StatusManageList.js");
 /* harmony import */ var _Courier_StatusOfCourierUpdate__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Courier/StatusOfCourierUpdate */ "./resources/js/components/Courier/StatusOfCourierUpdate.js");
 /* harmony import */ var _Courier_CourierTrack__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Courier/CourierTrack */ "./resources/js/components/Courier/CourierTrack.js");
@@ -84346,9 +84297,13 @@ function Example() {
     exact: true,
     component: _website_Index__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/trackingData",
+    exact: true,
+    component: _website_TrackingDataDisplay__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/tracking",
     exact: true,
-    component: _website_TrackCourier__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _website_TrackCourier__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/service",
     exact: true,
@@ -84368,23 +84323,19 @@ function Example() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/courier",
     exact: true,
-    component: _Courier_CourierContainer__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _Courier_CourierContainer__WEBPACK_IMPORTED_MODULE_13__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/courier/addcourier",
     exact: true,
-    component: _Courier_CourierAdd__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _Courier_CourierAdd__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/courier/courierlist",
     exact: true,
-    component: _Courier_CourierList__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _Courier_CourierList__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/courier/edit/:id",
     exact: true,
-    component: _Courier_CourierUpdate__WEBPACK_IMPORTED_MODULE_14__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "/courier/delete/:id",
-    exact: true,
-    component: _Courier_DeleteCourier__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _Courier_CourierUpdate__WEBPACK_IMPORTED_MODULE_15__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/courierstatus/update/:id",
     exact: true,
@@ -85268,6 +85219,7 @@ function ReportForm(props) {
   }, "Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     className: "form-control custom-select",
     name: "month",
+    required: true,
     onChange: function onChange(e) {
       setMonth(e.target.value);
     }
@@ -85304,6 +85256,7 @@ function ReportForm(props) {
   }, "Year"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     className: "form-control custom-select",
     name: "year",
+    required: true,
     onChange: function onChange(e) {
       setYear(e.target.value);
     }
@@ -85336,7 +85289,8 @@ function ReportForm(props) {
     type: "submit"
   }, "Generate")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TotalEarn__WEBPACK_IMPORTED_MODULE_3__["default"], {
     totalEarnings: props.totalEarnings,
-    monthlyTotal: props.monthlyTotal
+    monthlyTotal: props.monthlyTotal,
+    month: month
   })));
 }
 
@@ -85500,13 +85454,9 @@ function TotalEarn(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "text-dark"
-  }, "Total Earnings in Month "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+  }, "Total Earnings in Month ", props.month), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "my-2"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-    className: ""
-  }, props.monthlyTotal)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "lead"
-  })));
+  }), props.monthlyTotal == null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Sorry no earnings")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, props.monthlyTotal))));
 }
 
 /***/ }),
@@ -86132,7 +86082,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Courier_Container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Courier/Container */ "./resources/js/components/Courier/Container.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Courier_CourierTrackingDataDisplay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Courier/CourierTrackingDataDisplay */ "./resources/js/components/Courier/CourierTrackingDataDisplay.js");
+/* harmony import */ var _TrackingDataDisplay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TrackingDataDisplay */ "./resources/js/components/website/TrackingDataDisplay.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -86150,6 +86101,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -86212,7 +86164,7 @@ function TrackCourier() {
     }
   }, message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid  bg-light p-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Courier_CourierTrackingDataDisplay__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TrackingDataDisplay__WEBPACK_IMPORTED_MODULE_4__["default"], {
     trackingData: gettrackingNoData
   })), !message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid  bg-light p-5"
@@ -86230,6 +86182,7 @@ function TrackCourier() {
     type: "text",
     name: "tracking_no",
     placeholder: "Tracking No",
+    required: true,
     onChange: function onChange(e) {
       setTrackingNo(e.target.value);
     }
@@ -86237,6 +86190,81 @@ function TrackCourier() {
     className: "btn btn-secondary m-3 my-sm-0",
     type: "submit"
   }, "Track")))))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/website/TrackingDataDisplay.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/website/TrackingDataDisplay.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TrackingDataDisplay; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function TrackingDataDisplay(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container-fluid p-5 bg-success text-light"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "text-center text-light"
+  }, "Your Courier Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+    className: "bg-dark"
+  }), props.trackingData.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "text-light text-center"
+  }, "Sorry no data found"), props.trackingData.map(function (data) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: data.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row p-5 text-light justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-5 "
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Date :", data.Date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-5 "
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Tracking No :", data.tracking_no))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row  mb-5 justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-5 border border-light p-4 "
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Courier Catagory :", data.Catagory), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Courier Weight :", data.Weight)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-5 border border-light p-4"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Courier Status :", data.Courier_Status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Courier Status Date :", data.Courier_Status_date))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row justify-content-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-5"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Sender Name :", data.Sender_Name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Sender Phone :", data.Sender_Phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Sender Address :", data.Sender_Address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-5"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Reciver Name :", data.Receiver_Name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Reciver Address :"), data.Receiver_Address, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "font-weight-bold text-light"
+    }, "Reciver Phone :", data.Receiver_Phone))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      className: "bg-dark"
+    }));
+  })));
 }
 
 /***/ }),

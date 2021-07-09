@@ -9,12 +9,12 @@ import Index from "./website/Index";
 import Service from "./website/Service";
 import About from "./website/About";
 import Footer from "./website/Footer";
+import TrackingDataDisplay from "./website/TrackingDataDisplay";
 import TrackCourier from "./website/TrackCourier";
 import CourierAdd from "./Courier/CourierAdd";
 import CourierContainer from "./Courier/CourierContainer";
 import CourierList from "./Courier/CourierList";
 import CourierUpdate from "./Courier/CourierUpdate";
-import DeleteCourier from "./Courier/DeleteCourier";
 import StatusManageList from "./Courier/StatusManageList";
 import StatusOfCourierUpdate from "./Courier/StatusOfCourierUpdate";
 import CourierTrack from "./Courier/CourierTrack";
@@ -29,6 +29,11 @@ function Example() {
                     <Route path="/login" exact component={Login} />
 
                     <Route path="/CourierService" exact component={Index} />
+                    <Route
+                        path="/trackingData"
+                        exact
+                        component={TrackingDataDisplay}
+                    />
                     <Route path="/tracking" exact component={TrackCourier} />
                     <Route path="/service" exact component={Service} />
                     <Route path="/about" exact component={About} />
@@ -51,11 +56,11 @@ function Example() {
                         exact
                         component={CourierUpdate}
                     />
-                    <Route
+                    {/* <Route
                         path="/courier/delete/:id"
                         exact
                         component={DeleteCourier}
-                    />
+                    /> */}
                     <Route
                         path="/courierstatus/update/:id"
                         exact

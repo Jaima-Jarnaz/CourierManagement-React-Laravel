@@ -115,7 +115,7 @@ class CourierController extends Controller
         $deleted_data=$courier->delete();
         $couriers=Courier::all();
         if($deleted_data){
-           return response()->json(['status'=>200,'deleted_data'=>$deleted_data,'afterdeleteData'=>$couriers]);
+           return response()->json(['status'=>200,'deleted_data'=>$deleted_data,'afterdeleteData'=>$couriers,'message'=>'Deleted Successfully']);
        }
     }
 

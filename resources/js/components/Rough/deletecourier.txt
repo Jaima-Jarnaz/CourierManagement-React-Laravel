@@ -1,0 +1,45 @@
+import React, { useState, useEffect } from "react";
+import swal from "sweetalert";
+import { useParams } from "react-router";
+import CourierList from "./CourierList";
+
+export default function DeleteCourier() {
+    const [message, setMessage] = useState(false);
+    //const { id } = useParams();
+
+    const deleteCourierData = async id => {
+        swal({
+            title: "Are you sure?",
+            text:
+                "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        }).then(willDelete => {
+            if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success"
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+        });
+
+        const res = await axios.get(`/courier/delete/${id}`);
+        if (res.data.status === 200) {
+            setMessage(true);
+        }
+        // swal("Good job!", "You clicked the button!", "success");
+    };
+    // useEffect(() => {
+    //     deleteCourierData();
+    // }, []);
+
+    return (
+        <div>
+            {message && <CourierList deleteCourierData={deleteCourierData} />}
+        </div>
+    );
+}
+
+//export default DeleteCourier;

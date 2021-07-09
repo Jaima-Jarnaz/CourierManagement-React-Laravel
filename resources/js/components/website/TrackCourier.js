@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Container from "../Courier/Container";
 import axios from "axios";
-import CourierTrackingDataDisplay from "../Courier/CourierTrackingDataDisplay";
+import TrackingDataDisplay from "./TrackingDataDisplay";
+import { Redirect } from "react-router-dom";
 
 export default function TrackCourier() {
     const [message, setMessage] = useState(false);
@@ -24,9 +25,13 @@ export default function TrackCourier() {
             <div className="" style={{ backgroundColor: "white" }}>
                 {message && (
                     <div className="container-fluid  bg-light p-5">
-                        <CourierTrackingDataDisplay
-                            trackingData={gettrackingNoData}
-                        />
+                        <TrackingDataDisplay trackingData={gettrackingNoData} />
+                        {/* <Redirect
+                            to={{
+                                pathname: "/trackingData",
+                                state: { trackingData: gettrackingNoData }
+                            }}
+                        /> */}
                     </div>
                 )}
 
@@ -44,6 +49,7 @@ export default function TrackCourier() {
                                         type="text"
                                         name="tracking_no"
                                         placeholder="Tracking No"
+                                        required
                                         onChange={e => {
                                             setTrackingNo(e.target.value);
                                         }}

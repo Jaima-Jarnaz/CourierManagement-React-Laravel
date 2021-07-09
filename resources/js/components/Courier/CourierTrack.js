@@ -41,6 +41,7 @@ export default function CourierTrack() {
                                 type="text"
                                 name="tracking_no"
                                 placeholder="Tracking No"
+                                required
                                 onChange={e => {
                                     setTrackingNo(e.target.value);
                                 }}
