@@ -3,23 +3,22 @@ import StatusList from "./StatusList";
 import axios from "axios";
 import CourierPills from "./CourierPills";
 import FilterByOrderId from "./FilterByOrderId";
-//import StatusPending from "./StatusPending";
+import StatusPending from "./StatusPending";
 
-//export const AllStatusDataContext = React.createContext();
+//const AllStatusDataContext = React.createContext(null);
 
 export default function StatusManageList() {
     const [fetchedPreviousStatus, setFetchedPreviousStatus] = useState([]);
-    //const [contextData, setcontextData] = useState([]);
     const [error, setError] = useState(false);
 
     const getPreviousData = async () => {
         const res = await axios.get("/courier/getPreviousStatusList");
         if (res.data.status == 200) {
             setFetchedPreviousStatus(res.data.listData);
-            //setcontextData(res.data.listData);
         }
         console.log("status", res.data.listData);
     };
+    console.log("fetchedPreviousStatus", fetchedPreviousStatus);
 
     const getFilterDataByOrderId = async enteredOrderId => {
         console.log(enteredOrderId);
@@ -45,9 +44,10 @@ export default function StatusManageList() {
                 fetchedPreviousStatus={fetchedPreviousStatus}
                 error={error}
             />
-            {/* <AllStatusDataContext.Provider value={contextData}>
+            {/* <AllStatusDataContext.Provider value={fetchedPreviousStatus}>
                 <StatusPending />
             </AllStatusDataContext.Provider> */}
         </React.Fragment>
     );
 }
+// export { AllStatusDataContext };

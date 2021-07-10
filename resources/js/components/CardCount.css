@@ -1,0 +1,22 @@
+.overlayone {
+    width: 280px;
+    height: 320px;
+    display: inline-block;
+    position: relative;
+}
+.overlayinn {
+    background-color: rgb(237 245 244 / 70%);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 70px;
+    transition: opacity 0.5s;
+    color: black;
+}
+.overlayinn:hover {
+    opacity: 1;
+    transition: opacity 0.5s;
+}

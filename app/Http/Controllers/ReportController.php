@@ -30,6 +30,13 @@ class ReportController extends Controller
         return response()->json(['status'=>200,'total_earnings'=>$total_earnings]) ;
     }
 
+    public function dailyReports()
+    {
+        $dailyreportdata=Payment::select('id','Date','Order_Id','tracking_no','Delivery_Charge','Total_Bill')->orderBy('Order_Id','DESC')->get();
+        return response()->json(['status'=>200,'dailyreportdata'=>$dailyreportdata]);
+      
+    }
+
 
 
 }

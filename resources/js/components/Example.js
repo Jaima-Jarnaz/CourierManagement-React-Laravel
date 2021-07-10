@@ -17,8 +17,10 @@ import CourierList from "./Courier/CourierList";
 import CourierUpdate from "./Courier/CourierUpdate";
 import StatusManageList from "./Courier/StatusManageList";
 import StatusOfCourierUpdate from "./Courier/StatusOfCourierUpdate";
+import StatusPending from "./Courier/StatusPending";
 import CourierTrack from "./Courier/CourierTrack";
 import ReportGenarate from "./Report/ReportGenarate";
+import StatusDelivered from "./Courier/StatusDelivered";
 
 function Example() {
     return (
@@ -70,6 +72,16 @@ function Example() {
                         path="/Courier/Statuslist"
                         exact
                         component={StatusManageList}
+                    />
+                    <Route
+                        path="/Courier/Statuslist/pending"
+                        exact
+                        component={StatusPending}
+                    />
+                    <Route
+                        path="/Courier/Statuslist/delivered"
+                        exact
+                        component={StatusDelivered}
                     />
                     <Route
                         path="/courier/track"

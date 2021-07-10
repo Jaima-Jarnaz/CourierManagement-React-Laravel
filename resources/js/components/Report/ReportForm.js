@@ -21,6 +21,14 @@ export default function ReportForm(props) {
     return (
         <React.Fragment>
             <NavContainer>
+                <div>
+                    <button
+                        className="btn btn-info btn-sm m-2"
+                        onClick={props.dailyReport}
+                    >
+                        Daily Report
+                    </button>
+                </div>
                 <Container>
                     <form className="" onSubmit={formSubmitHandler}>
                         <div className="row">
@@ -76,7 +84,7 @@ export default function ReportForm(props) {
                         </div>
                         <div className="">
                             <button
-                                className="menu-toggle btn btn-info btn-sm"
+                                className="menu-toggle btn btn-success btn-sm"
                                 type="submit"
                             >
                                 Generate

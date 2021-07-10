@@ -50,3 +50,4 @@ Route::post('/login','RegistrationController@login');
 //````````Report``````
 Route::post('/reports','ReportController@generateReport');
 Route::get('/totalEarnings','ReportController@total_earnings');
+Route::get('/dailyReports','ReportController@dailyReports');

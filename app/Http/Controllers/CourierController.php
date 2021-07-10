@@ -6,13 +6,28 @@ use App\Courier;
 use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class CourierController extends Controller
 {
     public function create(Request $request)
     {
-        //dd('hello');
+           $validator = Validator::make($request->all(), [
+            'Sender_Phone'       => 'string|required|max:20|min:10',
+            'Receiver_Phone'    => 'string|required|max:20|min:10',
+            'Courier_Status_date'       => 'date',
+            'Date'                      => 'date',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' =>false,
+                'message' => $validator->getMessageBag()->first(),
+                'errors' => $validator->errors()   
+            ]);
+        } 
+
+
         $courier = new Courier();
         $courier->Sender_Name=request('Sender_Name');
         $courier->Sender_Address=request('Sender_Address');
@@ -121,10 +136,12 @@ class CourierController extends Controller
 
     public function getPreviousStatusList()
     {
-        $list=Courier::select('Order_Id','Courier_Status_date','Courier_Status')->get();
+        $list=Courier::select('Order_Id','Courier_Status_date','Courier_Status')->orderBy('Order_Id','DESC')->get();
+        //$list2=Courier::select('Courier_Status')->get();
         //$list2=(object) $list;
         //$list2=json_encode($list);
         return response()->json(['status'=>200,'listData'=>$list]);
+        //return $list2;
        
     }
 

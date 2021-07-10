@@ -1,19 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-// import { Redirect } from "react-router";
-// import StatusPending from "./StatusPending";
+import CourierPills from "./CourierPills";
 
-// const AllStatusDataContext = React.createContext();
+export default function StatusPending() {
+    const [fetchedPreviousStatus, setFetchedPreviousStatus] = useState([]);
 
-export default function StatusList(props) {
-    // const AllStatusDataContext = React.createContext(
-    //     props.fetchedPreviousStatus
-    // );
-    // console.log(AllStatusDataContext);
-    console.log("data", props.fetchedPreviousStatus);
+    const getPreviousData = async () => {
+        const res = await axios.get("/courier/getPreviousStatusList");
+        if (res.data.status == 200) {
+            setFetchedPreviousStatus(res.data.listData);
+        }
+        console.log("status", res.data.listData);
+    };
+
+    useEffect(() => {
+        getPreviousData();
+    }, []);
+
+    const newArray = fetchedPreviousStatus.filter(
+        data => data.Courier_Status != "Courier delivered"
+    );
+
     return (
         <React.Fragment>
             <div className="container-fluid">
+                <CourierPills />
                 <div className="row m-2 justify-content-center">
                     <div className="col mt-2">
                         <table
@@ -29,21 +40,14 @@ export default function StatusList(props) {
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="">
-                                {props.fetchedPreviousStatus.map(data => {
+                            <tbody>
+                                {newArray.map(data => {
                                     return (
                                         <tr key={data.Order_Id}>
                                             <td>{data.Order_Id}</td>
                                             <td>{data.Courier_Status_date}</td>
                                             <td>{data.Courier_Status}</td>
                                             <td>
-                                                {data.Courier_Status ===
-                                                    "Courier delivered" && (
-                                                    <p className="text-light btn btn-sm btn-success">
-                                                        Delivered
-                                                    </p>
-                                                )}
-
                                                 {data.Courier_Status !=
                                                     "Courier delivered" && (
                                                     <p className="text-light btn btn-sm btn-danger">
@@ -64,14 +68,8 @@ export default function StatusList(props) {
                                 })}
                             </tbody>
                         </table>
-                        {/* )} */}
                     </div>
                 </div>
-                {/* <AllStatusDataContext.Provider
-                    value={props.fetchedPreviousStatus}
-                >
-                    <StatusPending />
-                </AllStatusDataContext.Provider> */}
             </div>
         </React.Fragment>
     );
