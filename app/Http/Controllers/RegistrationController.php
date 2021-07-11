@@ -44,10 +44,21 @@ class RegistrationController extends Controller
     public function login(Request $request)
     {
 
+         $validator = Validator::make($request->all(), [
+            'email'    => 'required ',
+            'password' => 'required|string|min:8',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' =>false,
+                'errors' => $validator->errors()   
+            ]);
+        } 
+
         $user = Registration::where('email',$request->email)->first();
        if(!$user || !Hash::check($request->password,$user->password))
        {
-           return ['error'=> 'Email or Password Incorrect '];
+           return ['incorrectPassword'=> 'Email or Password Incorrect ','success' =>false];
        }
        return response()->json(['status'=>200,'user'=>$user]);
     }

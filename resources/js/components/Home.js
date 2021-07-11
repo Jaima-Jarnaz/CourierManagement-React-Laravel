@@ -81,7 +81,7 @@ export default function Home() {
                             <div className="row">
                                 <div className="col-md-4">
                                     <CardCount
-                                        title={"Delivered"}
+                                        title={"Deliver"}
                                         amount={delivered}
                                         img={deliver}
                                     />

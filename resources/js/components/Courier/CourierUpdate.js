@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-
 import axios from "axios";
 import CourierPills from "./CourierPills";
 import CourierList from "./CourierList";

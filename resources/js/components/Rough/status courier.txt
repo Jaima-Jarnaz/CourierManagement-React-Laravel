@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 import CourierPills from "./CourierPills";
 import StatusManageList from "./StatusManageList";
-import swal from "sweetalert";
 
 export default function StatusOfCourierUpdate() {
     const [statusdate, setStatusDate] = useState("");
@@ -27,12 +26,6 @@ export default function StatusOfCourierUpdate() {
             statusUpdatedData
         );
         if (result.data.status === 200) {
-            swal({
-                title: "Good job!",
-                text: "Data Updated Successfully",
-                icon: "success",
-                button: "OK"
-            });
             setStatusDate("");
             setOrderId("");
             setCourierStatus("");

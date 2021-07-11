@@ -53,18 +53,6 @@ export default function CourierAddForm(props) {
 
         props.allEnteredCourierData(enteredData);
 
-        // if (props.error !== null) {
-        //     setSender_PhoneValid(true);
-
-        //     setReceiver_PhoneValid(true);
-
-        //     setCourier_Status_dateValid(true);
-
-        //     setDateValid(true);
-
-        //     setErrorHandle(true);
-        // }
-
         setSenderName("");
         setaddress("");
         setphone("");

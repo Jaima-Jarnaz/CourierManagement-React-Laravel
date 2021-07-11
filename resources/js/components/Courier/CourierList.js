@@ -7,17 +7,56 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-export default function CourierList(props) {
+export default function CourierList() {
     const [fetchedCourierDetails, setFetchedCourierDetails] = useState([]);
+    const [otherInfo, setOtherInfo] = useState({});
     const [message, setMessage] = useState(false);
+    const [url, setUrl] = useState("/courier/courierlist");
+    const [pagination, setPagination] = useState([]);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [dataPerPage] = useState(4);
 
     const courierFetchedData = async () => {
-        const res = await axios.get("/courier/courierlist");
+        const res = await axios.get(url);
         if (res.data.status == 200) {
-            setFetchedCourierDetails(res.data.courierdata);
+            setFetchedCourierDetails(
+                fetchedCourierDetails.length > 0
+                    ? fetchedCourierDetails.concat(res.data.courierdata.data)
+                    : res.data.courierdata.data
+            );
+
+            setOtherInfo(res.data.courierdata);
+            setUrl(res.data.courierdata.next_page_url);
         }
+        makePagination(res.data.courierdata);
+
         console.log("data", res.data.courierdata);
     };
+
+    const loadMore = () => {
+        setUrl(pagination.next_page_url);
+        courierFetchedData();
+    };
+
+    // const first = () => {
+    //     setUrl(pagination.first_page_url);
+    //     courierFetchedData();
+    // };
+
+    const makePagination = allDataWithPagenumUrl => {
+        let pagination = {
+            current_page: allDataWithPagenumUrl.current_page,
+            last_page: allDataWithPagenumUrl.last_page,
+            next_page_url: allDataWithPagenumUrl.last_page_url,
+            prev_page_url: allDataWithPagenumUrl.prev_page_url,
+            first_page_url: allDataWithPagenumUrl.first_page_url
+        };
+        setPagination(pagination);
+    };
+
+    useEffect(() => {
+        courierFetchedData();
+    }, []);
 
     const deleteCourierData = id => {
         swal({
@@ -44,23 +83,16 @@ export default function CourierList(props) {
                     });
             }
         });
-
-        // const res = await axios.get(`/courier/delete/${id}`);
-        // if (res.data.status === 200) {
-        //     // swal({
-        //     //     title: "Good job!",
-        //     //     text: res.data.message,
-        //     //     icon: "success",
-        //     //     button: "OK"
-        //     // });
-
-        //     setMessage(true);
-        // }
     };
 
-    useEffect(() => {
-        courierFetchedData();
-    }, []);
+    //Current page
+    // const indexOfLastPage = currentPage * dataPerPage;
+    // const indexOfFirstPage = indexOfLastPage - dataPerPage;
+
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(otherInfo.total / otherInfo.per_page); i++) {
+        pageNumbers.push(i);
+    }
 
     return (
         <div className="container-fluid">
@@ -71,7 +103,7 @@ export default function CourierList(props) {
             )}
 
             {!message && (
-                <div>
+                <div className="container-fluid">
                     <CourierPills />
                     <h4 className="text-center text-light mt-5">
                         Courier Details
@@ -80,7 +112,9 @@ export default function CourierList(props) {
                         <div className="col mt-3">
                             <table
                                 className="table table-striped text-dark"
-                                style={{ backgroundColor: "white" }}
+                                style={{
+                                    backgroundColor: "white"
+                                }}
                             >
                                 <thead>
                                     <tr>
@@ -103,7 +137,7 @@ export default function CourierList(props) {
                                     {fetchedCourierDetails.map(data => {
                                         return (
                                             <tr key={data.id}>
-                                                <th scope="row">#</th>
+                                                <th scope="row">{data.id}</th>
                                                 <td>
                                                     <strong>Origin:</strong>
                                                     {data.Sender_Origin}
@@ -183,7 +217,6 @@ export default function CourierList(props) {
                                                                 data.id
                                                             );
                                                         }}
-                                                        // to={`/courier/delete/${data.id}`}
                                                     >
                                                         <FontAwesomeIcon
                                                             icon={faTrashAlt}
@@ -198,7 +231,36 @@ export default function CourierList(props) {
                             </table>
                         </div>
                     </div>
-                    <Pagination />
+                    {/* <button onClick={previous}>Previous</button> */}
+                    {/* <Pagination
+                        dataPerPage={otherInfo.per_page}
+                        totalData={otherInfo.total}
+                        url={otherInfo.next_page_url}
+                        loadMore={loadMore}
+                    /> */}
+
+                    <div>
+                        <div className="text-dark">
+                            <ul className="pagination pagination-lg justify-content-center">
+                                {pageNumbers.map(number => {
+                                    return (
+                                        <li
+                                            className="page-item active border border-light"
+                                            key={number}
+                                        >
+                                            <button
+                                                className="page-link"
+                                                onClick={loadMore}
+                                                // href={otherInfo.next_page_url}
+                                            >
+                                                {number}
+                                            </button>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

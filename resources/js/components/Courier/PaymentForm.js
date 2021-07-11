@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Print from "./Print";
+//import Print from "./Print";
 import Container from "./Container";
 import axios from "axios";
 
@@ -26,6 +26,14 @@ export default function PaymentForm(props) {
         }
     };
 
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+
     useEffect(() => {
         gettingPaymentData();
     }, []);
@@ -34,12 +42,20 @@ export default function PaymentForm(props) {
     return (
         <React.Fragment>
             <Container>
-                {message && <Print />}
+                {message && (
+                    <button
+                        className="btn btn-success"
+                        onClick={printDiv("printableArea")}
+                    ></button>
+                )}
                 {!message &&
                     getPaymentData.map(data => {
                         return (
                             <div className="" key={data.trackingno}>
-                                <div className="border border-success p-5">
+                                <div
+                                    className="border border-success p-5"
+                                    id="printableArea"
+                                >
                                     <h3 className="text-center m-3">
                                         Total Bill
                                     </h3>

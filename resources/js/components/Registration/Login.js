@@ -6,6 +6,7 @@ import RegistrationTab from "./RegistrationTab";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [incorrectPassword, setIncorrectPassword] = useState("");
     const [error, seterror] = useState("");
     const [checkError, setCheckError] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,7 +27,8 @@ export default function Login() {
             setPassword("");
         } else {
             setCheckError(true);
-            seterror(res.data.error);
+            setIncorrectPassword(res.data.incorrectPassword);
+            seterror(res.data.errors);
         }
     };
 
@@ -57,11 +59,13 @@ export default function Login() {
                                 {checkError && (
                                     <div className="">
                                         <div className="row justify-content-center">
-                                            <div className="col-md-8 alert alert-dismissible alert-danger mt-5 text-center text-light">
-                                                <strong className="">
-                                                    {error}
-                                                </strong>
-                                            </div>
+                                            {!error && (
+                                                <div className="col-md-8 alert alert-dismissible alert-danger mt-5 text-center text-light">
+                                                    <strong className="">
+                                                        {incorrectPassword}
+                                                    </strong>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 )}
@@ -85,6 +89,11 @@ export default function Login() {
                                         }}
                                         value={email}
                                     />
+                                    {error && (
+                                        <p className="text-danger">
+                                            {error.email}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div className="form-group">
@@ -104,6 +113,11 @@ export default function Login() {
                                         }}
                                         value={password}
                                     />
+                                    {error && (
+                                        <p className="text-danger">
+                                            {error.password}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <button

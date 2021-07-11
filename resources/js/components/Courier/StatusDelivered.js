@@ -37,7 +37,6 @@ export default function StatusDelivered() {
                                     <th scope="col">Status Date</th>
                                     <th scope="col">Courier Status</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,14 +53,6 @@ export default function StatusDelivered() {
                                                         Delivered
                                                     </p>
                                                 )}
-                                            </td>
-                                            <td>
-                                                <NavLink
-                                                    to={`/courierstatus/update/${data.Order_Id}`}
-                                                    className="btn btn-info"
-                                                >
-                                                    Status
-                                                </NavLink>
                                             </td>
                                         </tr>
                                     );

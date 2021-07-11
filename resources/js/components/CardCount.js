@@ -5,23 +5,16 @@ export default function CardCount(props) {
     return (
         <div className="mt-3">
             <div className="text-white bg-light">
-                <div className="card overlayone">
-                    <img
-                        src={props.img}
-                        className="img-fluid"
-                        style={{ width: "17rem" }}
-                    ></img>
+                <div className="card overlayone m-2">
+                    <img src={props.img} style={{ maxWidth: "71%" }}></img>
+                    <h2 className="text-center">{props.amount}</h2>
                     <div className="overlayinn">
-                        <h2 className="card-title text-center">
-                            {props.title}
-                        </h2>
-                        <strong>
-                            <h1 className="card-text text-center">
-                                +{props.amount}
-                            </h1>
-                        </strong>
+                        <h4 className="card-title text-center">
+                            {props.title} - {props.amount}
+                        </h4>
                     </div>
                 </div>
+                <div className="footer text-center bg-info">{props.title}</div>
             </div>
         </div>
     );

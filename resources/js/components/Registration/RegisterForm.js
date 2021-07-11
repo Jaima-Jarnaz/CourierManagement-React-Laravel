@@ -11,7 +11,7 @@ export default function RegisterForm(props) {
     const [phoneValid, setPhoneValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
 
-    const formSubmitHandler = async e => {
+    const formSubmitHandler = e => {
         e.preventDefault();
 
         const enteredData = {

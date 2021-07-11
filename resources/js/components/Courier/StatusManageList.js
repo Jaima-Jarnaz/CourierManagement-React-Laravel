@@ -3,20 +3,16 @@ import StatusList from "./StatusList";
 import axios from "axios";
 import CourierPills from "./CourierPills";
 import FilterByOrderId from "./FilterByOrderId";
-//import StatusPending from "./StatusPending";
-
-//export const AllStatusDataContext = React.createContext();
 
 export default function StatusManageList() {
     const [fetchedPreviousStatus, setFetchedPreviousStatus] = useState([]);
-    //const [contextData, setcontextData] = useState([]);
-    const [error, setError] = useState(false);
+    const [dataNotFound, setDataNotFound] = useState(false);
+    //const [error, setError] = useState(false);
 
     const getPreviousData = async () => {
         const res = await axios.get("/courier/getPreviousStatusList");
         if (res.data.status == 200) {
             setFetchedPreviousStatus(res.data.listData);
-            //setcontextData(res.data.listData);
         }
         console.log("status", res.data.listData);
     };
@@ -26,9 +22,11 @@ export default function StatusManageList() {
         const res = await axios.get(`/courier/filterOrderId/${enteredOrderId}`);
         if (res.status === 200) {
             setFetchedPreviousStatus(res.data.filterOrderIdData);
+            let datanotfound = res.data.filterOrderIdData.length;
+            if (datanotfound === 0) {
+                setDataNotFound(true);
+            }
             console.log("filterOrderIdData", res.data.filterOrderIdData);
-        } else {
-            setError(true);
         }
     };
 
@@ -41,13 +39,11 @@ export default function StatusManageList() {
             <CourierPills />
             <h4 className="text-center text-light mt-5">Courier Details</h4>
             <FilterByOrderId enteredOrderId={getFilterDataByOrderId} />
+
             <StatusList
                 fetchedPreviousStatus={fetchedPreviousStatus}
-                error={error}
+                dataNotFound={dataNotFound}
             />
-            {/* <AllStatusDataContext.Provider value={contextData}>
-                <StatusPending />
-            </AllStatusDataContext.Provider> */}
         </React.Fragment>
     );
 }

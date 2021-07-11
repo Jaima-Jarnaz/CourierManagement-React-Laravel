@@ -55,10 +55,10 @@ class CourierController extends Controller
     public function genarateId()
     {
         $orderid = Courier::whereNotNull('Order_Id')->orderBy('Order_Id','desc')->limit(1)->first();
-        $orderid2 = Courier::whereNull('Order_Id')->orderBy('Order_Id','desc')->limit(1)->first();
+       // $orderid2 = Courier::whereNull('Order_Id')->orderBy('Order_Id','desc')->limit(1)->first();
 
         $tracking_no = Courier::whereNotNull('tracking_no')->orderBy('tracking_no','desc')->limit(1)->first();
-        $tracking_no2 = Courier::whereNull('tracking_no')->first();
+       // $tracking_no2 = Courier::whereNull('tracking_no')->first();
 
         //CMS-0102-0001
         if(isset($orderid)||isset($tracking_no)){
@@ -86,7 +86,8 @@ class CourierController extends Controller
 
     public function getCourierList()
     {
-       $couriers=Courier::all() ;
+        $couriers=Courier::orderBy('id','DESC')->paginate(5) ;
+        //$couriers=Courier::all();
         return response()->json(['status'=>200,'courierdata'=>$couriers]);
     }
 
@@ -224,18 +225,26 @@ class CourierController extends Controller
 
     public function postPaymentData()
     {
-        $payment = new Payment();
-        $payment->Order_Id=request('orderid');
-        $payment->Sender_Origin=request('origin');
-        $payment->Receiver_Destination=request('destination');
-        $payment->Date=request('date');
-        $payment->Catagory=request('catagory');
-        $payment->Weight=request('weight');
-        $payment->tracking_no=request('trackingno');
-        $payment->Total_Bill=request('total');
-        $payment->Delivery_Charge=request('delivery_charge');
-        $payment->save();
-        return  response()->json(['status'=>200]);
+        $orderid=request('orderid');
+        $courier= new Courier();
+        $courier=Courier::where('Order_Id',$orderid)->first();
+        if($courier->Order_Id == $orderid){
+
+            $payment = new Payment();
+            $payment->Order_Id=$courier->Order_Id;
+            $payment->Sender_Origin=$courier->Sender_Origin;
+            $payment->Receiver_Destination=$courier->Receiver_Destination;
+            $payment->Date=$courier->Date;
+            $payment->Catagory=$courier->Catagory;
+            $payment->Weight=$courier->Weight;
+            $payment->tracking_no=$courier->tracking_no;
+            $payment->Total_Bill=request('total');
+            $payment->Delivery_Charge=request('delivery_charge');
+            $payment->save();
+            return  response()->json(['status'=>200]);
+
+        }
+        
        
     }
 
