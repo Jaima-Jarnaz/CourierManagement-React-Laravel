@@ -14,6 +14,15 @@
 <h2 align="center">Laravel + React </h2>
 <h3 align="center">Courier Management System</h3>
 
+<h2>Create Laravel Project</h2>
+
+```
+1. composer create-project Laravel/Laravel="7.x" react-Laravel-application                                                                   
+2. cd react-Laravel-application                                                        
+3. code . 
+
+```
+
 
 <h2>Required Pakages</h2>
 
