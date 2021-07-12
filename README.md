@@ -14,7 +14,54 @@
 <h2 align="center">Laravel + React </h2>
 <h3 align="center">Courier Management System</h3>
 
->Actors 
+
+<h2>Required Pakages</h2>
+
+<ul>
+    <li><h3>axios (npm install axios)(https://www.npmjs.com/package/axios)</h3></li>
+    <li><h3> Bootswatch (npm install bootswatch)(https://bootswatch.com/)</h3> </li>
+</ul>
+
+> Needs to import this in app.scss file for bootswatch theme
+
+```
+    @import "~bootswatch/dist/[theme]/variables"; 
+    @import "~bootstrap/scss/bootstrap";  
+    @import "~bootswatch/dist/[theme]/bootswatch";
+    
+```
+
+<ul>
+    <li><h3>React Connection(https://laravel.com/docs/7.x/frontend)</h3></li>
+</ul>
+
+
+> React Connection with Laravel . I'm using Laravel mix for working with React.
+
+```
+composer require laravel/ui:^2.5
+php artisan ui react.
+php artisan ui react --auth.
+npm install.
+npm run dev.
+
+```
+
+<ul>
+    <li><h3>React Router(https://www.npmjs.com/package/react-router-dom)</h3></li>
+</ul>
+
+<ul>
+    <li><h3>FontAwesome(https://fontawesome.com/)</h3></li>
+</ul>
+
+<ul>
+    <li><h3>SweetAlert(https://sweetalert.js.org/guides/)</h3></li>
+</ul>
+
+
+
+> Actors 
 <ul>
     <li> Admin</li>
     <li> Branch Admin</li>
