@@ -82771,10 +82771,7 @@ function CourierList() {
         });
       }
     });
-  }; //Current page
-  // const indexOfLastPage = currentPage * dataPerPage;
-  // const indexOfFirstPage = indexOfLastPage - dataPerPage;
-
+  };
 
   var pageNumbers = [];
 
@@ -82826,7 +82823,7 @@ function CourierList() {
       key: data.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("th", {
       scope: "row"
-    }, data.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Origin:"), data.Sender_Origin, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Name:"), data.Sender_Name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Phone:"), data.Sender_Phone, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Address:"), data.Sender_Address, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Email:"), data.Sender_Email, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Destination:"), data.Receiver_Destination, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Name:"), data.Receiver_Name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Phone:"), data.Receiver_Phone, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Address:"), data.Receiver_Address, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Email:"), data.Receiver_Email, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Courier_Status_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Catagory), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Weight), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Order_Id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.tracking_no), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Courier_Status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["NavLink"], {
+    }, "#"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Origin:"), data.Sender_Origin, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Name:"), data.Sender_Name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Phone:"), data.Sender_Phone, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Address:"), data.Sender_Address, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Sender Email:"), data.Sender_Email, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Destination:"), data.Receiver_Destination, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Name:"), data.Receiver_Name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Phone:"), data.Receiver_Phone, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Address:"), data.Receiver_Address, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("strong", null, "Receiver Email:"), data.Receiver_Email, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Courier_Status_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Catagory), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Weight), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Order_Id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.tracking_no), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, data.Courier_Status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["NavLink"], {
       to: "/courier/edit/".concat(data.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__["FontAwesomeIcon"], {
       icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__["faEdit"],
@@ -82849,8 +82846,7 @@ function CourierList() {
       key: number
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("button", {
       className: "page-link",
-      onClick: loadMore // href={otherInfo.next_page_url}
-
+      onClick: loadMore
     }, number));
   }))))));
 }
@@ -84430,8 +84426,7 @@ function StatusOfCourierUpdate() {
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
       courier_status = _useState6[0],
-      setCourierStatus = _useState6[1]; //const [getData, setGetData] = useState("");
-
+      setCourierStatus = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -85348,8 +85343,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _RegistrationTab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RegistrationTab */ "./resources/js/components/Registration/RegistrationTab.js");
-/* harmony import */ var _RegisterForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./RegisterForm */ "./resources/js/components/Registration/RegisterForm.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _RegistrationTab__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./RegistrationTab */ "./resources/js/components/Registration/RegistrationTab.js");
+/* harmony import */ var _RegisterForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./RegisterForm */ "./resources/js/components/Registration/RegisterForm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -85367,6 +85364,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -85404,6 +85402,7 @@ function Register() {
               console.log("resdata", res);
 
               if (res.data.status === 200) {
+                sweetalert__WEBPACK_IMPORTED_MODULE_4___default()(res.data.success, "success");
                 setmessage(true);
               } else {
                 seterror(res.data.errors);
@@ -85437,13 +85436,13 @@ function Register() {
     className: "container"
   }, isLoggedIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
     to: "/"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_RegistrationTab__WEBPACK_IMPORTED_MODULE_4__["default"], null), message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_RegistrationTab__WEBPACK_IMPORTED_MODULE_5__["default"], null), message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-6 alert alert-dismissible alert-success mt-5 text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Well done!"), " Registered Successfully"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
     to: "/login"
-  })), !message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_RegisterForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  })), !message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_RegisterForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
     registerFormData: getRegisterFormData //statelifting
     ,
     error: error
@@ -85934,11 +85933,10 @@ function ReportGenarate() {
 
               if (res.data.status === 200) {
                 setMonthlyTotal(res.data.monthlyTotal[0].total);
+                console.log(res);
               }
 
-              console.log(res.data.monthlyTotal[0].total);
-
-            case 5:
+            case 4:
             case "end":
               return _context.stop();
           }

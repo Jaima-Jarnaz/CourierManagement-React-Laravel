@@ -58,11 +58,6 @@ function Example() {
                         exact
                         component={CourierUpdate}
                     />
-                    {/* <Route
-                        path="/courier/delete/:id"
-                        exact
-                        component={DeleteCourier}
-                    /> */}
                     <Route
                         path="/courierstatus/update/:id"
                         exact

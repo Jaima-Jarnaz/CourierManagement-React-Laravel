@@ -32,7 +32,7 @@ class ReportController extends Controller
 
     public function dailyReports()
     {
-        $dailyreportdata=Payment::select('id','Date','Order_Id','tracking_no','Delivery_Charge','Total_Bill')->orderBy('Order_Id','DESC')->get();
+        $dailyreportdata=Payment::select('id','Date','Order_Id','tracking_no','Delivery_Charge','Total_Bill')->orderBy('Date','DESC')->get();
         return response()->json(['status'=>200,'dailyreportdata'=>$dailyreportdata]);
       
     }

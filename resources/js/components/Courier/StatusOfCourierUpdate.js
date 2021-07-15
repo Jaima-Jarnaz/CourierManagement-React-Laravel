@@ -9,7 +9,6 @@ export default function StatusOfCourierUpdate() {
     const [statusdate, setStatusDate] = useState("");
     const [order_id, setOrderId] = useState("");
     const [courier_status, setCourierStatus] = useState("");
-    //const [getData, setGetData] = useState("");
     const [message, setmessage] = useState(false);
     const { id } = useParams();
 

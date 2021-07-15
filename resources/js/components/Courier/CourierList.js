@@ -85,10 +85,6 @@ export default function CourierList() {
         });
     };
 
-    //Current page
-    // const indexOfLastPage = currentPage * dataPerPage;
-    // const indexOfFirstPage = indexOfLastPage - dataPerPage;
-
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(otherInfo.total / otherInfo.per_page); i++) {
         pageNumbers.push(i);
@@ -137,7 +133,7 @@ export default function CourierList() {
                                     {fetchedCourierDetails.map(data => {
                                         return (
                                             <tr key={data.id}>
-                                                <th scope="row">{data.id}</th>
+                                                <th scope="row">#</th>
                                                 <td>
                                                     <strong>Origin:</strong>
                                                     {data.Sender_Origin}
@@ -231,13 +227,6 @@ export default function CourierList() {
                             </table>
                         </div>
                     </div>
-                    {/* <button onClick={previous}>Previous</button> */}
-                    {/* <Pagination
-                        dataPerPage={otherInfo.per_page}
-                        totalData={otherInfo.total}
-                        url={otherInfo.next_page_url}
-                        loadMore={loadMore}
-                    /> */}
 
                     <div>
                         <div className="text-dark">
@@ -251,7 +240,6 @@ export default function CourierList() {
                                             <button
                                                 className="page-link"
                                                 onClick={loadMore}
-                                                // href={otherInfo.next_page_url}
                                             >
                                                 {number}
                                             </button>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router";
 import axios from "axios";
+import swal from "sweetalert";
 import RegistrationTab from "./RegistrationTab";
 import RegisterForm from "./RegisterForm";
 
@@ -13,6 +14,7 @@ export default function Register() {
         const res = await axios.post("/register", enteredData);
         console.log("resdata", res);
         if (res.data.status === 200) {
+            swal(res.data.success, "success");
             setmessage(true);
         } else {
             seterror(res.data.errors);

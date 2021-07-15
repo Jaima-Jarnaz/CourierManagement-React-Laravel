@@ -14,8 +14,8 @@ export default function ReportGenarate() {
 
         if (res.data.status === 200) {
             setMonthlyTotal(res.data.monthlyTotal[0].total);
+            console.log(res);
         }
-        console.log(res.data.monthlyTotal[0].total);
     };
 
     const getTotalAmountData = async getFormData => {
