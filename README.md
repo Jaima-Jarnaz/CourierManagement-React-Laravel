@@ -72,7 +72,7 @@ npm run dev.
 
 
 
-## Actors 
+###  Actors 
 <ul>
     <li> Admin</li>
     <li> Customer</li>
@@ -95,7 +95,8 @@ npm run dev.
   - create model for each table following laravel commands
   
   
-  ### Delete data using sweetAlert.<p>Always use button onClick it'll help to re-render the component instance of using NavLink</p>
+  ### Delete data using sweetAlert
+  <p>Always use button onClick it'll help to re-render the component instance of using NavLink</p>
   
   
   ```
