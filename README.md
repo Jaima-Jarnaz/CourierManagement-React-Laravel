@@ -78,8 +78,26 @@ npm run dev.
     <li> Customer</li>
   </ul>
   
-  ## Some Clear Portion
-  >Delete data using sweetAlert.<p>Always use button onClick it'll help to re-render the component instance of using NavLink</p>
+  <h2 align="center">Some Clear Portion</h2>
+  
+  ### How web.php used
+  - http request post/get url goes to web.php
+  - then web.php to Controller
+
+  ### How app.php used
+  - http request post/get url goes to app.php
+  - all routing written in app.php
+  - app.php to controller
+
+ ### Migration of laravel
+  - write database name in .env file
+  - use laravel migration commands
+  - create model for each table following laravel commands
+  
+  
+  ### Delete data using sweetAlert.<p>Always use button onClick it'll help to re-render the component instance of using NavLink</p>
+  
+  
   ```
       const deleteCourierData = id => {
         swal({
@@ -111,6 +129,7 @@ npm run dev.
     };
   
   ```
+  
   >[Check the documentation of SweetAlert](https://sweetalert.js.org/guides/#getting-started)
   
  
