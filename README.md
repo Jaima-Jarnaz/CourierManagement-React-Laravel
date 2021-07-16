@@ -123,6 +123,9 @@ npm run dev.
 ### Website Home Section
 ![First Look of this Project](images/websitehome.PNG)
 
+### Admin Authentication
+![First Look of this Project](images/register.PNG)
+
 ### Admin Dashboard
 ![First Look of this Project](images/dashboard.PNG)
 
@@ -141,6 +144,11 @@ npm run dev.
 ### Admin  Status Sorted by Delivered
 ![First Look of this Project](images/delivered.PNG)
 
+### Admin Courier Tracking
+![First Look of this Project](images/tracking.PNG)
 
+### Admin Courier Reports
+![First Look of this Project](images/reports.PNG)
 
-
+## Project Component Diagram
+![First Look of this Project](images/component.png)
